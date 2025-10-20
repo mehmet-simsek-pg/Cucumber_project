@@ -12,4 +12,8 @@ public class HomePage extends BasePage{
     public HomePage(WebDriver driver) {
         super(driver);
     }
+
+    public void verifyHomePage() {
+        verifyDisplayed(clinicText, "clinic");
+    }
 }
