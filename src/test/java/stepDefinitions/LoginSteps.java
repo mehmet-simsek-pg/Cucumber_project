@@ -30,5 +30,6 @@ public class LoginSteps {
     @Then("Verify Home page opened")
     public void verify_home_page_opened() {
         homePage.verifyHomePage();
+        driver.quit();
     }
 }

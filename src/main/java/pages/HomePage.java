@@ -14,6 +14,6 @@ public class HomePage extends BasePage{
     }
 
     public void verifyHomePage() {
-        verifyDisplayed(clinicText, "clinic");
+        verifyDisplayed(clinicText, "Clinic");
     }
 }
