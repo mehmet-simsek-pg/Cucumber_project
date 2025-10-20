@@ -19,4 +19,12 @@ public class LoginPage extends BasePage{
         super(driver);
     }
 
+    public void fillLoginMask(final String username, final String password) {
+        sendKeysToElement(emailInput, username);
+        sendKeysToElement(passwordInput, password);
+    }
+
+    public void clickLoginBtn() {
+        clickElement(loginBtn);
+    }
 }
