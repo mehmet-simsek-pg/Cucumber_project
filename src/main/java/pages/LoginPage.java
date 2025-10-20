@@ -9,6 +9,9 @@ public class LoginPage extends BasePage{
     @FindBy(css = "input[id='username']")
     private WebElement emailInput;
 
+    @FindBy(css = "button[class^='-esm-login']")
+    private WebElement continueBtn;
+
     @FindBy(css = "input[id='password']")
     private WebElement passwordInput;
 
@@ -21,6 +24,7 @@ public class LoginPage extends BasePage{
 
     public void fillLoginMask(final String username, final String password) {
         sendKeysToElement(emailInput, username);
+        clickElement(continueBtn);
         sendKeysToElement(passwordInput, password);
     }
 
