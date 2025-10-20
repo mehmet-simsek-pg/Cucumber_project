@@ -6,16 +6,17 @@ import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends BasePage{
 
-    @FindBy(css = "input[formcontrolname='username']")
+    @FindBy(css = "input[id='username']")
     private WebElement emailInput;
 
-    @FindBy(css = "input[formcontrolname='password']")
+    @FindBy(css = "input[id='password']")
     private WebElement passwordInput;
 
-    @FindBy(css = "button[aria-label='LOGIN']")
+    @FindBy(css = "button[class^='-esm-login']")
     private WebElement loginBtn;
 
     public LoginPage(WebDriver driver) {
         super(driver);
     }
+
 }
