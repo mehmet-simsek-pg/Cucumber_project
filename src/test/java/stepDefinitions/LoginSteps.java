@@ -2,27 +2,33 @@ package stepDefinitions;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.WebDriver;
+import pages.HomePage;
+import pages.LoginPage;
+import utility.BaseDriver;
 
 public class LoginSteps {
 
+    WebDriver driver;
+    HomePage homePage;
+    LoginPage loginPage;
+
     @When("Navigate to the webpage")
     public void navigate_to_the_webpage() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        driver = BaseDriver.driver("https://o3.openmrs.org/openmrs/spa/login");
+        homePage = new HomePage(driver);
+        loginPage = new LoginPage(driver);
     }
     @Then("Enter username and password")
     public void enter_username_and_password() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        loginPage.fillLoginMask("admin", "Admin123");
     }
     @Then("Click login button")
     public void click_login_button() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        loginPage.clickLoginBtn();
     }
     @Then("Verify Home page opened")
     public void verify_home_page_opened() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        homePage.verifyHomePage();
     }
 }
