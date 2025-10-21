@@ -18,9 +18,9 @@ Feature: Login Functionality
     When Navigate to the webpage
     Then Enter username "<username>" and password "<password>"
     Then Click login button
-    Then Verify Home page opened
+    Then Verify result "<result>"
 
     Examples:
-      | username | password |
-      | admin    | Admin123 |
-      | admin    | wrongPass|
+      | username | password | result |
+      | admin    | Admin123 |   home page     |
+      | admin    | wrongPass|   error message |
