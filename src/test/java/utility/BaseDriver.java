@@ -1,18 +1,18 @@
 package utility;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
 
 public class BaseDriver {
 
-    public static WebDriver driver(String url) {
-        WebDriver driver = new ChromeDriver();
-        driver.get(url);
+    public static WebDriver driver;
+
+    public static WebDriver getDriver() {
+
+        driver = new ChromeDriver();
+        driver.get("https://o3.openmrs.org/openmrs/spa/login");
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
@@ -25,5 +25,9 @@ public class BaseDriver {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static void tearDown() {
+        driver.quit();
     }
 }

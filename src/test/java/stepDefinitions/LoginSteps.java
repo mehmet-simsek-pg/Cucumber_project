@@ -15,7 +15,7 @@ public class LoginSteps {
 
     @When("Navigate to the webpage")
     public void navigate_to_the_webpage() {
-        driver = BaseDriver.driver("https://o3.openmrs.org/openmrs/spa/login");
+        driver = BaseDriver.getDriver();
         homePage = new HomePage(driver);
         loginPage = new LoginPage(driver);
     }
