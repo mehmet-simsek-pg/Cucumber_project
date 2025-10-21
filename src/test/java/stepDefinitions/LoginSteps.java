@@ -41,4 +41,9 @@ public class LoginSteps {
     public void verifyErrorMessage() {
         loginPage.verifyErrorMessage();
     }
+
+    @Then("Enter username {string} and password {string}")
+    public void enterUsernameAndPassword(String username, String password) {
+        loginPage.fillLoginMask(username,password);
+    }
 }
