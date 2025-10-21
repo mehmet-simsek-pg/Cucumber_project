@@ -18,7 +18,7 @@ public class LoginPage extends BasePage{
     @FindBy(css = "button[class^='-esm-login']")
     private WebElement loginBtn;
 
-    @FindBy(css = "div[role='status']>div>div>div")
+    @FindBy(css = "div[role='status']>div>div>div:nth-child(1)")
     private WebElement errorMessage;
 
     public LoginPage(WebDriver driver) {
