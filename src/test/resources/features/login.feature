@@ -21,6 +21,6 @@ Feature: Login Functionality
     Then Verify result "<result>"
 
     Examples:
-      | username | password | result |
+      | username | password |   result        |
       | admin    | Admin123 |   home page     |
       | admin    | wrongPass|   error message |
