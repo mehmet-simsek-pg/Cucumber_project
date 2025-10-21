@@ -31,4 +31,14 @@ public class LoginSteps {
     public void verify_home_page_opened() {
         homePage.verifyHomePage();
     }
+
+    @Then("Enter invalid username and password")
+    public void enterInvalidUsernameAndPassword() {
+        loginPage.fillLoginMask("admin", "incorrect");
+    }
+
+    @Then("Verify error message")
+    public void verifyErrorMessage() {
+        loginPage.verifyErrorMessage();
+    }
 }

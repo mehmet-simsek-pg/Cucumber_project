@@ -18,6 +18,9 @@ public class LoginPage extends BasePage{
     @FindBy(css = "button[class^='-esm-login']")
     private WebElement loginBtn;
 
+    @FindBy(css = "div[role='status']>div>div>div")
+    private WebElement errorMessage;
+
     public LoginPage(WebDriver driver) {
         super(driver);
     }
@@ -30,5 +33,9 @@ public class LoginPage extends BasePage{
 
     public void clickLoginBtn() {
         clickElement(loginBtn);
+    }
+
+    public void verifyErrorMessage() {
+        verifyDisplayed(errorMessage, "Error");
     }
 }
