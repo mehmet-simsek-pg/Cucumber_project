@@ -40,4 +40,25 @@ public class AddNewPatientSteps {
     public void click_register_patient_button() {
        createPatientPage.clickRegisterBtn();
     }
+
+    @Then("Select gender")
+    public void selectGender() {
+        createPatientPage.selectGender(2);
+    }
+
+    @Then("Enter birthday")
+    public void enterBirthday() {
+        createPatientPage.enterBirthday("11.11.2011");
+    }
+
+    @Then("Enter lastname")
+    public void enterLastname() {
+        createPatientPage.enterFirstnameAndLastname("", "user");
+
+    }
+
+    @Then("Enter firstname")
+    public void enterFirstname() {
+        createPatientPage.enterFirstnameAndLastname("test","");
+    }
 }
