@@ -24,4 +24,17 @@ public class CreatePatientPage extends BasePage{
     public CreatePatientPage(WebDriver driver) {
         super(driver);
     }
+
+    public void enterFirstnameAndLastname(final String firstname, final String lastname) {
+        sendKeysToElement(firstnameInput, firstname);
+        sendKeysToElement(lastnameInput, lastname);
+    }
+
+    public void selectGender(final int select) {
+        gender.get(select).click();
+    }
+
+    public void enterBirthday(final String birthday) {
+        sendKeysToElement(birthdayInput, birthday);
+    }
 }
