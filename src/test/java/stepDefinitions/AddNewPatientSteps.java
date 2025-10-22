@@ -1,19 +1,22 @@
 package stepDefinitions;
 
+import hooks.Hooks;
 import io.cucumber.java.en.Then;
+import org.openqa.selenium.WebDriver;
 import pages.CreatePatientPage;
 import pages.Navbar;
-import utility.BaseDriver;
 
 public class AddNewPatientSteps {
 
+    WebDriver driver;
     Navbar navbar;
     CreatePatientPage createPatientPage;
 
     @Then("Click add patient button")
     public void click_add_patient_button() {
-        navbar = new Navbar(BaseDriver.getDriver());
-        createPatientPage = new CreatePatientPage(BaseDriver.getDriver());
+        driver = Hooks.driver;
+        navbar = new Navbar(driver);
+        createPatientPage = new CreatePatientPage(driver);
 
         navbar.clickAddPatientBtn();
     }

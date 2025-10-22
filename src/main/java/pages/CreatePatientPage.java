@@ -18,7 +18,7 @@ public class CreatePatientPage extends BasePage{
     @FindBy(css = "div[class='cds--radio-button-wrapper']")
     private List<WebElement> gender;
 
-    @FindBy(css = "input[name='birthdate']")
+    @FindBy(css = "div[id='birthdate']")
     private WebElement birthdayInput;
 
     @FindBy(css = "button[type='submit']")
