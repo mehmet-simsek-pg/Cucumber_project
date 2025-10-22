@@ -9,10 +9,7 @@ public class HomePage extends BasePage{
     @FindBy(css = "div[data-testid='patient-queue-header']>div>div>p:nth-child(1)")
     private WebElement clinicText;
 
-    @FindBy(css = "button[name='AddPatientIcon']")
-    private WebElement addPatientBtn;
-
-    public HomePage(WebDriver driver) {
+    public HomePage(final WebDriver driver) {
         super(driver);
     }
 
@@ -20,7 +17,4 @@ public class HomePage extends BasePage{
         verifyDisplayed(clinicText, "Clinic");
     }
 
-    public void clickAddPatientBtn() {
-        clickElement(addPatientBtn);
-    }
 }

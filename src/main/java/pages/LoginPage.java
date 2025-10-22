@@ -21,7 +21,7 @@ public class LoginPage extends BasePage{
     @FindBy(css = "div[role='status']>div>div>div:nth-child(1)")
     private WebElement errorMessage;
 
-    public LoginPage(WebDriver driver) {
+    public LoginPage(final WebDriver driver) {
         super(driver);
     }
 
