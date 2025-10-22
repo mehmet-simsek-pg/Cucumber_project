@@ -21,6 +21,9 @@ public class CreatePatientPage extends BasePage{
     @FindBy(css = "input[name='birthdate']")
     private WebElement birthdayInput;
 
+    @FindBy(css = "button[type='submit']")
+    private WebElement registerBtn;
+
     public CreatePatientPage(WebDriver driver) {
         super(driver);
     }
@@ -36,5 +39,9 @@ public class CreatePatientPage extends BasePage{
 
     public void enterBirthday(final String birthday) {
         sendKeysToElement(birthdayInput, birthday);
+    }
+
+    public void clickRegisterBtn() {
+        clickElement(registerBtn);
     }
 }
