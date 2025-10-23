@@ -1,7 +1,9 @@
 Feature: User Profile
 
-  Scenario Outline: Create a new user
+  Background:
     Given Navigate to register page
+
+  Scenario Outline: Create a new user
     When Enter user info username "<username>" and email "<email>"
     And Fill the additional details
       | field       | value         |
@@ -9,6 +11,7 @@ Feature: User Profile
       | city        | <city>        |
       | phoneNumber | <phoneNumber> |
     Then Verify profile created
+
     Examples:
       | username | email             | country | city        | phoneNumber   |
       | user1    | user1@example.com | Turkey  | Istanbul    | +901231313123 |
