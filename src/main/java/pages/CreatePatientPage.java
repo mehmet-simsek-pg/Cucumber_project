@@ -18,8 +18,14 @@ public class CreatePatientPage extends BasePage{
     @FindBy(css = "div[class='cds--radio-button-wrapper']")
     private List<WebElement> gender;
 
-    @FindBy(css = "div[id='birthdate']")
-    private WebElement birthdayInput;
+    @FindBy(xpath = "(//button[@class='cds--content-switcher-btn'])[2]")
+    private WebElement birthdayNoBtn;
+
+    @FindBy(css = "input[id='monthsEstimated']")
+    private WebElement ageInMonthInput;
+
+    @FindBy(css = "input[id='yearsEstimated']")
+    private WebElement ageInYearInput;
 
     @FindBy(css = "button[type='submit']")
     private WebElement registerBtn;
@@ -37,8 +43,10 @@ public class CreatePatientPage extends BasePage{
         gender.get(select).click();
     }
 
-    public void enterBirthday(final String birthday) {
-        sendKeysToElement(birthdayInput, birthday);
+    public void enterBirthday(final String year, final String month) {
+        clickElement(birthdayNoBtn);
+        sendKeysToElement(ageInYearInput, year);
+        sendKeysToElement(ageInMonthInput, month);
     }
 
     public void clickRegisterBtn() {

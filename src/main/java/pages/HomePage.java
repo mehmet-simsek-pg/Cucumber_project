@@ -9,6 +9,7 @@ public class HomePage extends BasePage{
     @FindBy(css = "div[data-testid='patient-queue-header']>div>div>p:nth-child(1)")
     private WebElement clinicText;
 
+
     public HomePage(final WebDriver driver) {
         super(driver);
     }

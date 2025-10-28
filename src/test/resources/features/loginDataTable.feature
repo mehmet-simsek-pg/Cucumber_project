@@ -1,5 +1,6 @@
 Feature: Login with Datatable
 
+  @Smoke
   Scenario: Login with multiple user credentials
     Given User is on login page
     Then User enters credentials

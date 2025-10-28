@@ -31,11 +31,6 @@ public class AddNewPatientSteps {
         createPatientPage.selectGender(Integer.parseInt(number));
     }
 
-    @Then("Enter birthday {string}")
-    public void enter_birthday(String birthday) {
-        createPatientPage.enterBirthday(birthday);
-    }
-
     @Then("Click register patient button")
     public void click_register_patient_button() {
        createPatientPage.clickRegisterBtn();
@@ -44,11 +39,6 @@ public class AddNewPatientSteps {
     @Then("Select gender")
     public void selectGender() {
         createPatientPage.selectGender(2);
-    }
-
-    @Then("Enter birthday")
-    public void enterBirthday() {
-        createPatientPage.enterBirthday("11.11.2011");
     }
 
     @Then("Enter lastname")
@@ -60,5 +50,10 @@ public class AddNewPatientSteps {
     @Then("Enter firstname")
     public void enterFirstname() {
         createPatientPage.enterFirstnameAndLastname("test","");
+    }
+
+    @Then("Enter birthday year {string} month {string}")
+    public void enterBirthdayYearMonth(String year, String month) {
+        createPatientPage.enterBirthday(year, month);
     }
 }

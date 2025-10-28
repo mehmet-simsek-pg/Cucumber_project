@@ -6,6 +6,7 @@ Feature: Patient negative tests
     Then Click login button
     Then Verify Home page opened
 
+  @Regression
   Scenario: Create a patient with no firstname
     Then Click add patient button
     Then Enter lastname
@@ -13,7 +14,7 @@ Feature: Patient negative tests
     Then Enter birthday
     Then Click register patient button
 
-
+  @Regression
     Scenario: Create a patient with no lastname
       Then Click add patient button
       Then Enter firstname
