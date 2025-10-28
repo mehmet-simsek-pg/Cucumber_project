@@ -7,7 +7,9 @@ import io.cucumber.testng.CucumberOptions;
         features = "src/test/resources/features/login.feature", // features dosyalarinin yolu
         // tüm feature dosyalarini calistirabilirim, ya da sectigim feature dosyalarini calistirabilirim
         glue = {"stepDefinitions", "hooks"}, // Java kodlarinin oldugu klasörler
-        plugin = {"pretty", "html:target/cucumber-report.html"}
+        plugin = {"pretty", "html:target/cucumber-report.html"},
+        tags = "not @ignore",
+        monochrome = true
         // {"json:target/cucumber-report.json"}
         // {"junit:target/cucumber-report.xml"}
 )

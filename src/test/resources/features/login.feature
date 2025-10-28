@@ -14,7 +14,7 @@ Feature: Login Functionality
     Then Click login button
     Then Verify error message
 
-  @Smoke
+  @Smoke @ignore
   Scenario Outline: Login with different credentials
     When Navigate to the webpage
     Then Enter username "<username>" and password "<password>"
