@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import pages.HomePage;
 import pages.LoginPage;
+import utility.BaseDriver;
 
 public class LoginSteps {
 
@@ -19,9 +20,12 @@ public class LoginSteps {
 
     @When("Navigate to the webpage")
     public void navigate_to_the_webpage() {
-        driver = Hooks.driver;
+        driver = BaseDriver.getDriver();
         homePage = new HomePage(driver);
         loginPage = new LoginPage(driver);
+
+        driver.get("https://o3.openmrs.org/openmrs/spa/login");
+        LOGGER.info("Webpage opened");
     }
     @Then("Enter username and password")
     public void enter_username_and_password() {

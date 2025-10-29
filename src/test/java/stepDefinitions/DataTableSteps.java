@@ -3,7 +3,6 @@ package stepDefinitions;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.datatable.DataTable;
-import pojo.User;
 
 import java.util.List;
 import java.util.Map;

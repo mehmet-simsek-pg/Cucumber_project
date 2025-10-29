@@ -2,21 +2,47 @@ package utility;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.safari.SafariDriver;
 
 import java.time.Duration;
 
 public class BaseDriver {
 
-    public static WebDriver driver;
+    private static final ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
+    private static final ThreadLocal<String> threadBrowser = new ThreadLocal<>();
+
+    public static void setBrowser(String browser) {
+        threadBrowser.set(browser);
+    }
 
     public static WebDriver getDriver() {
 
-        driver = new ChromeDriver();
-        driver.get("https://o3.openmrs.org/openmrs/spa/login");
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
+        WebDriver driver = threadDriver.get();
+        if (driver == null) {
+            String browser = threadBrowser.get();
+            if (browser == null) {
+                // bu satir xml olmadigi durumda otomatik chrome calistirsin
+                browser = System.getProperty("browser","chrome");
+                threadBrowser.set(browser);
+            }
+            driver = createDriver(browser.toLowerCase());
+            driver.manage().window().maximize();
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+            threadDriver.set(driver);
+        }
         return driver;
+    }
+
+    private static WebDriver createDriver(String browser) {
+        return switch (browser) {
+            case "firefox" -> new FirefoxDriver();
+            case "edge" -> new EdgeDriver();
+            case "chrome" -> new ChromeDriver();
+            case "safari" -> new SafariDriver();
+            default -> null;
+        };
     }
 
     public static void threadWait(int second) {
@@ -28,6 +54,12 @@ public class BaseDriver {
     }
 
     public static void tearDown() {
-        driver.quit();
+        WebDriver driver = threadDriver.get();
+
+        if (driver != null) {
+            driver.quit();
+            threadDriver.remove();
+        }
+        threadBrowser.remove();
     }
 }

@@ -5,6 +5,7 @@ import io.cucumber.java.en.Then;
 import org.openqa.selenium.WebDriver;
 import pages.CreatePatientPage;
 import pages.Navbar;
+import utility.BaseDriver;
 
 public class AddNewPatientSteps {
 
@@ -14,9 +15,11 @@ public class AddNewPatientSteps {
 
     @Then("Click add patient button")
     public void click_add_patient_button() {
-        driver = Hooks.driver;
+        driver = BaseDriver.getDriver();
         navbar = new Navbar(driver);
         createPatientPage = new CreatePatientPage(driver);
+
+        driver.get("https://o3.openmrs.org/openmrs/spa/login");
 
         navbar.clickAddPatientBtn();
     }
