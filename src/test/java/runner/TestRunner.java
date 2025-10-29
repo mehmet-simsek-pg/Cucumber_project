@@ -7,7 +7,11 @@ import io.cucumber.testng.CucumberOptions;
         features = "src/test/resources/features/login.feature", // features dosyalarinin yolu
         // tüm feature dosyalarini calistirabilirim, ya da sectigim feature dosyalarini calistirabilirim
         glue = {"stepDefinitions", "hooks"}, // Java kodlarinin oldugu klasörler
-        plugin = {"pretty", "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"},
+        plugin = {
+                "pretty",
+                "html:target/cucumber-report.html",
+                "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"
+        },
         tags = "not @ignore",
         monochrome = true
         // {"json:target/cucumber-report.json"}

@@ -1,0 +1,14 @@
+<extentreports>
+    <configuration>
+        <!-- Tema & başlıklar -->
+        <theme>dark</theme>
+        <encoding>utf-8</encoding>
+        <documentTitle>Automation Dashboard</documentTitle>
+        <reportName>UI - Cucumber Extent Report</reportName>
+        <timeStampFormat>dd.MM.yyyy HH:mm:ss</timeStampFormat>
+
+        <!-- Rapor meta -->
+        <protocol>https</protocol>
+        <enableOfflineMode>true</enableOfflineMode>
+    </configuration>
+</extentreports>
