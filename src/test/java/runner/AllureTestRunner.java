@@ -7,9 +7,9 @@ import io.cucumber.testng.CucumberOptions;
         features = "src/test/resources/features/login.feature",
         glue = {"stepDefinitions", "hooks"},
         plugin = {"pretty", "html:target/cucumber-report.html",
-                "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"},
+                "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"},
         tags = "@Smoke", // tags eklenmek zorunda degil
         monochrome = true
 )
-public class ExtentTestRunner extends AbstractTestNGCucumberTests {
+public class AllureTestRunner extends AbstractTestNGCucumberTests {
 }

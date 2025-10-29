@@ -25,7 +25,7 @@ public class LoginSteps {
     }
     @Then("Enter username and password")
     public void enter_username_and_password() {
-        loginPage.fillLoginMask("admin123", "Admin123");
+        loginPage.fillLoginMask("admin", "Admin123");
     }
     @Then("Click login button")
     public void click_login_button() {
