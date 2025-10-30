@@ -11,29 +11,40 @@ import java.util.*;
 public class ExcelHelper {
 
     public static ArrayList<ArrayList<String>> read(String filePath, String sheetName, int columnNumber) {
+        // excel deki bilgileri okumak icin baslangicta 2 boyutlu bir list olusturduk
         ArrayList<ArrayList<String>> table = new ArrayList<>();
+
+        // try blogu disinda da sheet kullanicagim icin burda tanimladik ve baslangic degerine null atadik
         Sheet sheet = null;
         try {
+            // Dosya uzantisini vererek doyayi okuduk
             FileInputStream fileInputStream = new FileInputStream(filePath);
 
+            // okudugumuz dosyayi yani exceli sanal calisma kitabina ekledik
             Workbook workbook = WorkbookFactory.create(fileInputStream);
 
+            // sanal calisma kitabinda bir sheet olusturduk bunun ismini de parametreden aldik
             sheet = workbook.getSheet(sheetName);
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
+        // Excel deki dolu olan tüm satirlari getPhysicalNumberOfRows method ile okuduk
         for (int row = 0; row < sheet.getPhysicalNumberOfRows(); row++) {
 
+            // Her satirda sütunlara göre birden fazla eleman olabilir o yüzden List tanimladik
             ArrayList<String> rows = new ArrayList<>();
 
             for (int column = 0; column < columnNumber ; column++) {
+                // yukaridaki listeye sirasiyla sütunlardaki hücrelerin bilgilerini ekledik
                 rows.add(sheet.getRow(row).getCell(column).toString());
             }
+            // en son bu satirlari sütunlarda dahil olacak sekilde tabloya ekledik
             table.add(rows);
         }
 
+        // bu tablo exceli 2 boyutlu list halinde javanin anlayacagi bir yapiya dönüstürdü
         return table;
     }
 
