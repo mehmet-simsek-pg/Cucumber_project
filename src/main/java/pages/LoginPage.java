@@ -21,6 +21,15 @@ public class LoginPage extends BasePage{
     @FindBy(css = "div[role='status']>div>div>div:nth-child(1)")
     private WebElement errorMessage;
 
+    @FindBy(css = "input[data-test='username']")
+    private WebElement usernameInputSauce;
+
+    @FindBy(css = "input[data-test='password']")
+    private WebElement passwordInputSauce;
+
+    @FindBy(css = "input[data-test='login-button']")
+    private WebElement loginBtnSauce;
+
     public LoginPage(final WebDriver driver) {
         super(driver);
     }
@@ -37,5 +46,14 @@ public class LoginPage extends BasePage{
 
     public void verifyErrorMessage() {
         verifyDisplayed(errorMessage, "Error");
+    }
+
+    public void enterUsernameAndPassSauce(final String username, final String password) {
+        sendKeysToElement(usernameInputSauce, username);
+        sendKeysToElement(passwordInputSauce, password);
+    }
+
+    public void clickLoginBtnSauce() {
+        clickElement(loginBtnSauce);
     }
 }
