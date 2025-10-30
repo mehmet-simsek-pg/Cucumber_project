@@ -10,6 +10,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.Reporter;
 import utility.BaseDriver;
+import utility.ExcelHelper;
 
 public class Hooks {
 
@@ -49,6 +50,8 @@ public class Hooks {
             } else {
                 LOGGER.info("Scenario passed {}", scenario.getName());
             }
+
+            ExcelHelper.writeReport("target/report.xlsx", scenario.getName(), scenario.getStatus().toString());
         } finally {
             BaseDriver.tearDown();
             LOGGER.info("The driver quited successfully");

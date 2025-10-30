@@ -3,9 +3,12 @@ package utility;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class ExcelHelper {
@@ -48,7 +51,6 @@ public class ExcelHelper {
         return table;
     }
 
-
     public static void write(String filePath, String sheetName, ArrayList<ArrayList<String>> table) {
 
         // javanin anlamasi icin sanal bir calisma kitabi olusturduk
@@ -81,6 +83,86 @@ public class ExcelHelper {
             workbook.write(fileOutputStream);
             // sanal calisma kitabini kapattik
             workbook.close();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void writeReport(String filePath, String scenarioName, String testResult) {
+
+        // Parametre olarak file path verdim ve File clasiyla dosya olusturdum
+        File file = new File(filePath);
+
+        // Burada testi calistirdigimda ne zaman calistigini görmek icin LocalDateTime kullandik
+        String testTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
+
+        try {
+            // Verdigim dosya uzantisinda eger dosya yoksa islemleri
+            if (!file.exists()) {
+                // Sanal bir calisma kitabi olusturduk
+                Workbook workbook = new XSSFWorkbook();
+                // Bu calisma kitabinda sheet icin isim verdik
+                Sheet sheet = workbook.createSheet("Test Result");
+
+                // Header yani baslik kismi icin 0. satiri olusturduk
+                Row row = sheet.createRow(0);
+
+                // 0. satirin ilk hücresi yani ilk sütunu olusturduk ve deger atadik
+                Cell cell1 = row.createCell(0);
+                cell1.setCellValue(scenarioName);
+
+                // 0. satirin ikinci hücresi yani ikinci sütunu olusturduk ve deger atadik
+                Cell cell2 = row.createCell(1);
+                cell2.setCellValue(testResult);
+
+                // 0. satirin 3. hücresi yani 3. sütunu olusturduk ve deger atadik
+                Cell cell3 = row.createCell(2);
+                cell3.setCellValue(testTime);
+
+                // Burada ise workbook ta olusturdugumuz dosyayi parametre olarak
+                // verilen dosya uzantisina cikardik
+                FileOutputStream fileOutputStream = new FileOutputStream(filePath);
+                // Calisma kitabindaki bilgileri dosyaya yazdik
+                workbook.write(fileOutputStream);
+                // Sanal calisma kitabini kapattik
+                workbook.close();
+            } else {
+                // Eger parametrede verilen dosya uzantisinda excel dosyasi varsa bölümü
+                // Dosyayi okuduk
+                FileInputStream fileInputStream = new FileInputStream(filePath);
+                // Sanal calisma kitabi icerisine aktardik
+                Workbook workbook = new XSSFWorkbook(fileInputStream);
+
+                // Dosyadaki ilk sheeti cagirdik
+                Sheet sheet = workbook.getSheetAt(0);
+
+                // sheet icerisinde olan satirlari olusturduk
+                Row row = sheet.createRow(sheet.getPhysicalNumberOfRows());
+
+                // ilk satira 1. hücreyi ekledik
+                Cell cell1 = row.createCell(0);
+                cell1.setCellValue(scenarioName);
+
+                // ilk satira 2. hücreyi ekledik
+                Cell cell2 = row.createCell(1);
+                cell2.setCellValue(testResult);
+
+                // ilk satira 3. hücreyi ekledik
+                Cell cell3 = row.createCell(2);
+                cell3.setCellValue(testTime);
+
+                // dosya okuma nesnesini kapattik
+                fileInputStream.close();
+
+                // olusan dosyayi cikarmak icin parametre olarak aldigimiz dosya uzantisini kullandik
+                FileOutputStream fileOutputStream = new FileOutputStream(filePath);
+                // sanal calisma kitabinda olusan belgeyi dosyaya yazdik
+                workbook.write(fileOutputStream);
+                // sanal calisma kitabini kapattik
+                workbook.close();
+                // dosya yazma nesnesini kapattik
+                fileOutputStream.close();
+            }
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
